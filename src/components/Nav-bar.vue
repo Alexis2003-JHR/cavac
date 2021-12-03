@@ -4,7 +4,7 @@
       <div class="main-menu">
             <li><router-link to="/" class="nav-button">Inicio</router-link></li>
             <li><router-link to="/nosotros" class="nav-button">Nosotros</router-link></li> 
-            <li><router-link to="/contacto" class="nav-button">Planes</router-link></li>
+            <li><router-link to="/planes" class="nav-button">Planes</router-link></li>
         </div>
       <div class="menu-end">
           <ul>
@@ -52,5 +52,11 @@ Nav img{
 .menu-end a{
     border: solid 2px #260101;
     padding: 8px 15px;
+}
+.menu-end a:hover{
+    transition: .8s;
+    color: #F1F1F1;
+    background: #260101;
+    border: 2px solid #F1F1F1;
 }
 </style>
