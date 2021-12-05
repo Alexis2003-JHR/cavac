@@ -4,7 +4,7 @@
       <div class="main-menu">
             <li><router-link to="/" class="nav-button">Inicio</router-link></li>
             <li><router-link to="/nosotros" class="nav-button">Nosotros</router-link></li> 
-            <li><router-link to="/planes" class="nav-button">Planes</router-link></li>
+            <li><router-link to="/habitaciones" class="nav-button">Habitaciones</router-link></li>
         </div>
       <div class="menu-end">
           <ul>
