@@ -119,7 +119,7 @@ export default {
 }
 .btn-verMas a:hover{
   border: 3px solid #401201;
-  background: #D9C58B;
+  background: rgb(241, 230, 198);
   color: #401201;
 
   transition: .8s;
@@ -129,8 +129,7 @@ export default {
   color: #401201;
 }
 .btn-reservar a:hover{
-  background: #401201;
-  color: #D9C58B;
+  background: #dadada;
 
   transition: .8s;
 }

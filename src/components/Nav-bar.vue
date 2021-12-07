@@ -24,6 +24,7 @@ Nav{
     background: #F1F1F1;
     align-items: center;
     height: 90px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
 Nav img{
     max-width: 155px;
