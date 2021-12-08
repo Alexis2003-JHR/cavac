@@ -2,8 +2,9 @@
   <div class="habitaciones">
 
   <div class="tarjets-habitaciones">
-    <div class="tarjet" v-for="item in listaHabitaciones" :key="item.it">
-      <img src="@/assets/Habitaciones/Habitacion-1.jpg" alt="">
+
+    <div class="tarjet" v-for="(item, index) in listaHabitaciones" :key="item.name">
+      <img :src="require(`@/assets/Habitaciones/Habitacion-${ index + 1 }.jpg`)" alt="">
       <div class="info-tarjet-habitacion">
         <h3>{{item.nombre}}</h3>
       <p><span>Precio</span><br>${{item.precio}}</p>
@@ -20,6 +21,7 @@
       </div>
       </div>
     </div>
+
   </div>
 
   </div>
@@ -46,6 +48,7 @@ export default {
     },
   },
   data(){
+    
     return {
       listaHabitaciones: [],
     };

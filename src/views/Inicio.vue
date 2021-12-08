@@ -44,7 +44,7 @@ export default {
 
     return {carouselSlides};
   }
-}
+};
 </script>
 
 <style>
