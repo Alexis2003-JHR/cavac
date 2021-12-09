@@ -13,21 +13,7 @@
             </Slide>
         </Carousel>
         <div class="inicio-info">
-            <h1>¡Vive una experiencia CAVAC!</h1>
-            <div class="circle-inicio c1">
-                <p>Reserva</p>
-            </div>
-            <div class="circle-inicio c2">
-                <p>Conoce</p>
-            </div>
-            <div class="circle-inicio c3">
-                <p>Disfruta</p>
-            </div>
-            <div class="circle-inicio c4">
-                <p>Siente</p>
-            </div>
-
-            <img src="../assets/Galleries/Inicio-slide/Show1.jpg" alt="">
+            <img src="../assets/Ilustraciones/Illustration-2.svg" alt="">
         </div>
     </div>
 </template>
@@ -79,35 +65,9 @@ export default {
     width: 100%;
     font-weight: 400;
 }
-.circle-inicio{
-    display: flex;
-    margin: 66px;
-    align-items: center;
-    justify-content: center;
-    width: 160px;
-    height: 160px;
-    border-radius: 100%;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-size: 24px;
-    font-weight: 300;
-}
-.c1{
-    background: #D9C58B;
-}
-.c2{
-    background: #D9CAAD;
-}
-.c3{
-    background: #8C7B65;
-}
-.c4{
-    background: #401201;
-    color: #F1F1F1;
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.50);
-}
 .inicio-info img{
-    max-width: 700px;
-    max-height: 500px;
-    margin-bottom: 50px;
+    max-width: 85%;
+    
+    margin: 50px 0;
 }
 </style>
