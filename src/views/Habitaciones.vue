@@ -123,7 +123,7 @@ export default {
 }
 .btn-verMas a:hover{
   border: 3px solid #401201;
-  background: rgb(241, 230, 198);
+  background: #f1e6c6;
   color: #401201;
 
   transition: .8s;
