@@ -25,7 +25,7 @@
           <h2>Raudal del Jirijirimo</h2>
         </div>
         <div class="nosotros-tarjet nosotros-container-info">
-          <p>Uno de los lugares más exuberantes de Colombia, con sus cascadas y caídas de agua, es, 
+          <p>Uno de los lugares más hermosos de Colombia, con sus cascadas y caídas de agua, es, 
           sin duda un templo natural y espiritual del planeta.</p>
           <img src="../assets/Culture/TheBoys.png" alt="">
         </div>
