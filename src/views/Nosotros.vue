@@ -21,17 +21,28 @@
 
     <div class="nosotros-info">
       <div class="nosotros-tarjet info-raudal">
-        <h2>RAUDAL DEL JIRIJIRIMO</h2>
-        <p>Uno de los lugares más exuberantes de Colombia, con sus cascadas y caídas de agua, es, 
+
+        <div class="nosotros-container-title">
+          <h2>Raudal del Jirijirimo</h2>
+        </div>
+        <div class="nosotros-container-info">
+          <p>Uno de los lugares más exuberantes de Colombia, con sus cascadas y caídas de agua, es, 
           sin duda un templo natural y espiritual del planeta.</p>
-        <img src="@/assets/Galleries/Landscapes/3.Landscape.jpg" alt="">
+        <img src="../assets/Culture/TheBoys.png" alt="">
+        </div>
+        
       </div>
 
       <div class="nosotros-tarjet info-cultura">
-        <h2>CULTURA</h2>
-        <img src="@/assets/Culture/TheBoy-2.jpg" alt="">
-        <p>El Raudal del Jirijirimo del río Apaporis es considerado la Cama de la Anaconda por las 
-          tribus milenarias de la Amazonía.</p>
+        <div class="nosotros-container-title">
+          <h2>Cultura</h2>
+        </div>
+        <div class="nosotros-container-info">
+          <img src="../assets/Culture/TheBoy.png" alt="">
+          <p>El Raudal del Jirijirimo del río Apaporis es considerado la Cama de la Anaconda por las 
+            tribus milenarias de la Amazonía.</p> 
+        </div>
+        
         
       </div>
     </div>
@@ -98,26 +109,31 @@ export default {
 .nosotros-info h2{
   font-size: 24px;
 }
-
-.nosotros-tarjet{
+.nosotros-container-title{
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: #d9c68b83;
+  width: 100%;
+  height: 100vh;
+}
+.nosotros-container-info{
+  display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 10px 0;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100vh;
 }
 .nosotros-tarjet h2{
-  padding: 15px 0;
-  width: 90%;
+  font-family: 'Montserrat Alternates', sans-serif;
+  color: #401201;
+  font-size: 45px;
+}
+.nosotros-tarjet img{
+  max-width: 500px;
 }
 .nosotros-tarjet img, p{
   width: 45%;
-}
-
-.info-raudal{
-  background: #d9c68ba6;
-}
-.info-cultura{
-  background: #D9CAAD;
 }
 </style>

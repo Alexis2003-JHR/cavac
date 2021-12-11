@@ -13,7 +13,7 @@
             </Slide>
         </Carousel>
         <div class="inicio-info">
-            <img src="../assets/Ilustraciones/Illustration-2.svg" alt="">
+            <img src="../assets/Ilustraciones/Illustration-2.png" alt="">
         </div>
     </div>
 </template>
@@ -66,7 +66,7 @@ export default {
     font-weight: 400;
 }
 .inicio-info img{
-    max-width: 85%;
+    max-width: 100%;
     
     margin: 50px 0;
 }
