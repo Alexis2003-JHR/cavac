@@ -5,7 +5,7 @@
           <h1 class="form-title">Log<span>In</span></h1>
           <input type="text" placeholder="Nombre de usuario">
           <input type="password" placeholder="Contraseña">
-          <button type="submit">Iniciar</button>
+          <button type="submit">Iniciar sesión</button>
           <a href="#">Registrarse</a>
       </form>
 
