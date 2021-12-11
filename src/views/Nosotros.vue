@@ -20,31 +20,26 @@
     </div>
 
     <div class="nosotros-info">
-      <div class="nosotros-tarjet info-raudal">
 
-        <div class="nosotros-container-title">
+        <div class="nosotros-tarjet nosotros-container-title">
           <h2>Raudal del Jirijirimo</h2>
         </div>
-        <div class="nosotros-container-info">
+        <div class="nosotros-tarjet nosotros-container-info">
           <p>Uno de los lugares más exuberantes de Colombia, con sus cascadas y caídas de agua, es, 
           sin duda un templo natural y espiritual del planeta.</p>
-        <img src="../assets/Culture/TheBoys.png" alt="">
+          <img src="../assets/Culture/TheBoys.png" alt="">
         </div>
-        
-      </div>
 
-      <div class="nosotros-tarjet info-cultura">
-        <div class="nosotros-container-title">
+        <div class="nosotros-tarjet nosotros-container-title">
           <h2>Cultura</h2>
         </div>
-        <div class="nosotros-container-info">
+
+        <div class="nosotros-tarjet nosotros-container-info">
           <img src="../assets/Culture/TheBoy.png" alt="">
           <p>El Raudal del Jirijirimo del río Apaporis es considerado la Cama de la Anaconda por las 
             tribus milenarias de la Amazonía.</p> 
         </div>
         
-        
-      </div>
     </div>
       
   </div>
@@ -106,24 +101,12 @@ export default {
   font-size: 24px;
   margin: 30px 0;
 }
+.nosotros-tarjet{
+  height: 100vh;
+  width: 100%;
+}
 .nosotros-info h2{
   font-size: 24px;
-}
-.nosotros-container-title{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #d9c68b83;
-  width: 100%;
-  height: 100vh;
-}
-.nosotros-container-info{
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100vh;
 }
 .nosotros-tarjet h2{
   font-family: 'Montserrat Alternates', sans-serif;
@@ -135,5 +118,17 @@ export default {
 }
 .nosotros-tarjet img, p{
   width: 45%;
+}
+.nosotros-container-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d9c68b83;
+}
+.nosotros-container-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 </style>

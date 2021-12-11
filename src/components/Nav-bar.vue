@@ -7,9 +7,7 @@
             <li><router-link to="/habitaciones" class="nav-button">Habitaciones</router-link></li>
         </div>
       <div class="menu-end">
-          <ul>
-              <li><a href="#">LogIn</a></li>
-          </ul>
+            <li><router-link to="/login">LogIn</router-link></li>
       </div>
   </Nav>
 </template>
@@ -51,13 +49,16 @@ Nav img{
     list-style: none;
 }
 .menu-end a{
-    border: solid 2px #260101;
+    border-top: solid 2px #260101;
+    border-bottom: solid 2px #260101;
+    border-left: solid 2px #D9CAAD;
+    border-right: solid 2px #D9CAAD;
     padding: 8px 15px;
 }
 .menu-end a:hover{
+    border-left: solid 2px #260101;
+    border-right: solid 2px #260101;
+    background: #f7f0db;
     transition: .8s;
-    color: #F1F1F1;
-    background: #260101;
-    border: 2px solid #F1F1F1;
 }
 </style>

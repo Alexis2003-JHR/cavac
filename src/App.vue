@@ -1,6 +1,6 @@
 <template>
 <div class="app">
-  <Nav/>
+  <Nav v-if="!['LogIn'].includes($route.name)"/>
 
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
@@ -8,7 +8,7 @@
     </transition>
   </router-view>
 
-  <Footer/>
+  <Footer v-if="!['LogIn'].includes($route.name)"/>
 </div>
 </template>
 

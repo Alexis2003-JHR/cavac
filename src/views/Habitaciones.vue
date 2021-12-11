@@ -69,6 +69,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-around;
   width: 95%;
+  min-height: 450px;
   background: #F1F1F1;
   margin: 10px 0;
   padding: 20px 0;
