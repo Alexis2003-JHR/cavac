@@ -1,24 +1,65 @@
 <template>
   <div class="LogIn">
 
-      <form action="/" class="form-box">
+         <form v-on:submit.prevent="processLogInUser" class="form-box">
           <h1 class="form-title">Log<span>In</span></h1>
-          <input type="text" placeholder="Nombre de usuario">
-          <input type="password" placeholder="Contraseña">
+          <input type="text" v-model="user.username" placeholder="Nombre de usuario">
+          <input type="password" v-model="user.password" placeholder="Contraseña">
           <button type="submit">Iniciar sesión</button>
           <a href="#">Registrarse</a>
       </form>
 
       <div class="logo-login">
-          <img src="../assets/Logo.png" alt="">
+          <img src="/assets/Logo.png" alt="">
       </div>
 
   </div>
 </template>
 
 <script>
+import gql from "graphql-tag";
 export default {
+  name: "LogIn",
 
+  data: function() {
+    return {
+      user: {
+        username: "",
+        password: "",
+      },
+    };
+  },
+
+  methods: {
+    processLogInUser: async function() {
+      await this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation LogIn($credentials: CredentialsInput!) {
+             logIn(credentials: $credentials) {
+            refresh
+                access
+            }
+            }
+          `,
+          variables: {
+            credentials: this.user,
+          },
+        })
+        .then((result) => {
+          let dataLogIn = {
+            username: this.user.username,
+            token_access: result.data.logIn.access,
+            token_refresh: result.data.logIn.refresh,
+          };
+
+          this.$emit("completedLogIn", dataLogIn);
+        })
+        .catch((error) => {
+          alert("ERROR 401: Credenciales Incorrectas.");
+        });
+    },
+  },
 }
 </script>
 

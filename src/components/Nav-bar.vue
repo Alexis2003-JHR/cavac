@@ -7,7 +7,9 @@
             <li><router-link to="/habitaciones" class="nav-button">Habitaciones</router-link></li>
         </div>
       <div class="menu-end">
-            <li><router-link to="/login">LogIn</router-link></li>
+            <li><router-link v-if="!is_auth" to="/login">LogIn</router-link></li>
+            <li><router-link v-if="is_auth" to="/login">Reservas</router-link></li>
+            <li><router-link v-if="is_auth" to="/login">Account</router-link></li>
       </div>
   </Nav>
 </template>

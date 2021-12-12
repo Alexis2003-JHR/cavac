@@ -1,11 +1,11 @@
 <template>
   <div class="form-reserva">
-      <form action="" class="form-container">
+      <form v-on:submit.prevent="processReserva" class="form-container">
           <h1>RESERVA TU HABITACIÓN</h1>
 
           <div class="selection-form">
             <label for="habitacion">Habitación: <br></label>
-            <select name="habitacion" id="habitacion">
+            <select v-model="crearReserva.nombreHabitacion" name="habitacion" id="habitacion">
                 <option value="Sucursal del cielo">Sucursal del cielo</option>
                 <option value="La Heroica">La Heroica</option>
                 <option value="La Eterna Primavera">La Eterna Primavera</option>
@@ -18,12 +18,12 @@
           <div class="dates">
               <div class="date">
                   <label for="entrada">Fecha de entrada:<br></label>
-                  <input type="date" name="" id="entrada">
+                  <input v-mode="crearReserva.fechaIngreso" type="date" name="" id="entrada">
               </div>
 
               <div class="date">
                   <label for="salida">Fecha de salida:<br></label>
-                  <input type="date" name="" id="salida">
+                  <input v-mode="crearReserva.fechaSalida" type="date" name="" id="salida">
               </div>
           </div>
           
@@ -37,9 +37,81 @@
 </template>
 
 <script>
-export default {
+import gql from 'graphql-tag'
 
-}
+export default {
+    name: "Reserva",
+
+    data: function(){
+        return {
+            crearReserva: {
+                username:localStorage.getItem("username"),
+                nombreHabitacion: "",
+                fechaIngreso: "",
+                fechaSalida: "",
+            },
+        };
+    },
+    methods: {
+        processReserva: async function(){
+            if(localStorage.getItem("token_access") == null || 
+                localStorage.getItem("token_refresh") == null) {
+                    this.$emit("logOut");
+                    return;
+                }
+                    
+                localStorage.setItem("token_access", "");
+
+                await this.$apollo
+                .mutate({
+                    mutation: gql `
+                    mutation ($refresh: String!){
+                        refreshToekn(refresh: $refresh) {
+                            access
+                        }
+                    }
+                    `,
+                    variables: {
+                        refresh: localStorage.getItem("token_refresh"),
+                    },
+                })
+                .then((result) => {
+                    localStorage.setItem("token_access", result.data.refreshToken.access);
+                })
+                .catch((error) => {
+                    this.$emit("logOut");
+                    return;
+                });
+
+                await this.$apollo 
+                .mutate({
+                    mutation: gql `
+                    mutation CrearReserva($reserva: ReservaInput!) {
+                        crearReserva(reserva: $reserva) {
+                            id
+                            username
+                            nombreHabitacion
+                            fechaIngreso
+                            fechaSalida
+                            fechaCreacionReserva
+                            noches
+                            valorReserva
+                        }
+                    }
+                    `,
+                    variables: {
+                        reserva: this.crearReserva,
+                    }
+                })
+                .then((result) => {
+                    alert("Reserva creada de forma correcta!");
+                })
+                .catch((error) =>{
+                    alert("Saldo insuficiente o habitación incorrecta");
+                });
+        }
+    },
+};
 </script>
 
 <style>
