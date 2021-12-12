@@ -10,17 +10,19 @@
       <p><span>Precio</span><br>${{item.precio}}</p>
       <p><span>Detalles</span><br>{{item.descripcion}}</p>
 
-      <div class="buttons">
-        <div class="btn-verMas">
-          <a href="#">Ver más</a>
+        <div class="buttons">
+          <div class="btn-verMas">
+            <a href="#">Ver más</a>
+          </div>
+
+          <div class="btn-reservar">
+            <router-link to="/form-reserva" class="nav-button">Reservar</router-link>
+          </div>
         </div>
-        <div class="btn-reservar">
-          <a href="#">Reservar</a>
-        </div>
-        
-      </div>
       </div>
     </div>
+
+    
 
   </div>
 
@@ -51,6 +53,7 @@ export default {
     
     return {
       listaHabitaciones: [],
+      visible: true
     };
   },
 };

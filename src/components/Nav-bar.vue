@@ -1,6 +1,6 @@
 <template>
   <Nav>
-      <img src="../assets/Logo.png" alt="">
+      <a href=""><img src="../assets/Logo.png" alt=""></a>
       <div class="main-menu">
             <li><router-link to="/" class="nav-button">Inicio</router-link></li>
             <li><router-link to="/nosotros" class="nav-button">Nosotros</router-link></li> 
@@ -51,8 +51,8 @@ Nav img{
 .menu-end a{
     border-top: solid 2px #260101;
     border-bottom: solid 2px #260101;
-    border-left: solid 2px #D9CAAD;
-    border-right: solid 2px #D9CAAD;
+    border-left: solid 2px #F1F1F1;
+    border-right: solid 2px #F1F1F1;
     padding: 8px 15px;
 }
 .menu-end a:hover{
