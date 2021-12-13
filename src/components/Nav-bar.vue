@@ -1,20 +1,42 @@
 <template>
   <Nav>
-      <a href=""><img src="../assets/Logo.png" alt=""></a>
+      <a href=""><img src="../assets/logo.png" alt=""></a>
       <div class="main-menu">
-            <li><router-link to="/" class="nav-button">Inicio</router-link></li>
-            <li><router-link to="/nosotros" class="nav-button">Nosotros</router-link></li> 
-            <li><router-link to="/habitaciones" class="nav-button">Habitaciones</router-link></li>
+            <li><router-link v-if="is_auth" to="/inicio" class="nav-button">Inicio</router-link></li>
+            <li><router-link v-if="is_auth" to="/nosotros" class="nav-button">Nosotros</router-link></li> 
+            <li><router-link v-if="is_auth" to="/habitaciones" class="nav-button">Habitaciones</router-link></li>
+            <li><router-link v-if="is_auth" to="/reservas" class="nav-button">Mis Reservas</router-link></li>
+            
         </div>
       <div class="menu-end">
-            <li><router-link v-if="!is_auth" to="/login">LogIn</router-link></li>
-            <li><router-link v-if="is_auth" to="/login">Reservas</router-link></li>
-            <li><router-link v-if="is_auth" to="/login">Account</router-link></li>
+            <!--
+                <li><router-link v-if="!is_auth" to="/login">LogIn</router-link></li>
+                -->
+                
+            <button class =cerrar v-if="is_auth" v-on:click="logOut"> Cerrar Sesión </button>
       </div>
   </Nav>
 </template>
 
 <script>
+export default {
+
+  computed: {
+    is_auth: {
+      get: function() {
+        return this.$route.meta.requiresAuth;
+      },
+      set: function() { }
+    }
+    },
+      methods: {
+          logOut: function () {
+			localStorage.clear();
+			alert("Sesión Cerrada");
+            this.$router.push({ name: "logIn" });
+		},
+  },
+}
 </script>
 
 <style scoped>
@@ -56,6 +78,16 @@ Nav img{
     border-left: solid 2px #F1F1F1;
     border-right: solid 2px #F1F1F1;
     padding: 8px 15px;
+}
+.cerrar{
+     border-top: solid 2px #260101;
+    border-bottom: solid 2px #260101;
+    border-left: solid 2px #F1F1F1;
+    border-right: solid 2px #F1F1F1;
+    padding: 8px 15px;
+    text-decoration: none;
+    list-style: none;
+
 }
 .menu-end a:hover{
     border-left: solid 2px #260101;

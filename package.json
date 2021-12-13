@@ -33,5 +33,17 @@
     "node-sass": "^4.12.0",
     "prettier": "^2.2.1",
     "sass-loader": "^8.0.2"
-  }
+  },
+  "description": "<<<<<<< HEAD\r # cavac-fe",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexis2003-JHR/cavac.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexis2003-JHR/cavac/issues"
+  },
+  "homepage": "https://github.com/Alexis2003-JHR/cavac#readme"
 }

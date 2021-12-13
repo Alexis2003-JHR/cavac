@@ -9,16 +9,11 @@
         <h3>{{item.nombre}}</h3>
       <p><span>Precio</span><br>${{item.precio}}</p>
       <p><span>Detalles</span><br>{{item.descripcion}}</p>
+      
+      <div class="btn-reservar">
+        <router-link  to="/form-reserva" class="btn-reservar">Reservar</router-link>
+      </div>
 
-        <div class="buttons">
-          <div class="btn-verMas">
-            <a href="#">Ver más</a>
-          </div>
-
-          <div class="btn-reservar">
-            <router-link to="/form-reserva" class="nav-button">Reservar</router-link>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -99,15 +94,12 @@ export default {
   font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 600;
 }
-.buttons{
+.btn-reservar{
   display: flex;
-  justify-content: space-around;
-
-  position: absolute;
-  bottom: 10%;
-  left: 55%;
+  justify-content: center;
+  margin-top: 60px;
 }
-.buttons a{
+.btn-reservar a{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,19 +111,6 @@ export default {
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
-}
-.btn-verMas a{
-  border: 3px solid #D9C58B;
-  color: #D9C58B;
-}
-.btn-verMas a:hover{
-  border: 3px solid #401201;
-  background: #f1e6c6;
-  color: #401201;
-
-  transition: .8s;
-}
-.btn-reservar a{
   border: 3px solid#401201;
   color: #401201;
 }

@@ -37,7 +37,7 @@ export default {
           mutation: gql`
             mutation LogIn($credentials: CredentialsInput!) {
              logIn(credentials: $credentials) {
-            refresh
+                refresh
                 access
             }
             }

@@ -1,46 +1,41 @@
 <template>
-  <div class="form-reserva">
-      <form v-on:submit.prevent="processReserva" class="form-container">
-          <h1>RESERVA TU HABITACIÓN</h1>
+    <div class="form-reserva">
+        <form v-on:submit.prevent="processReserva" class="form-container">
+            <h1>RESERVA TU HABITACIÓN</h1>
 
-          <div class="selection-form">
-            <label for="habitacion">Habitación: <br></label>
-            <select v-model="crearReserva.nombreHabitacion" name="habitacion" id="habitacion">
-                <option value="Sucursal del cielo">Sucursal del cielo</option>
-                <option value="La Heroica">La Heroica</option>
-                <option value="La Eterna Primavera">La Eterna Primavera</option>
-                <option value="La Perla De America">La Perla De America</option>
-                <option value="La Ciudad de la Luna">La Ciudad de la Luna</option>
-                <option value="La Puerta de Oro">La Puerta de Oro</option>
-            </select>
-          </div>
+            <div class="selection-form">
+                <label for="habitacion">Habitación: <br></label>
+                    <select v-model="crearReserva.nombreHabitacion" name="habitacion" id="habitacion">
+                        <option value="Sucursal del cielo">Sucursal del cielo</option>
+                        <option value="La Heroica">La Heroica</option>
+                        <option value="La eterna primavera">La Eterna Primavera</option>
+                        <option value="La perla de América">La Perla De America</option>
+                        <option value="La ciudad de la luna">La Ciudad de la Luna</option>
+                        <option value="La puerta de oro">La Puerta de Oro</option>
+                    </select>
+            </div>
 
-          <div class="dates">
-              <div class="date">
-                  <label for="entrada">Fecha de entrada:<br></label>
-                  <input v-mode="crearReserva.fechaIngreso" type="date" name="" id="entrada">
-              </div>
+            <div class="dates">
+                <div class="date">
+                    <label for="entrada">Fecha de entrada:<br></label>
+                    <input v-model="crearReserva.fechaIngreso" type="date" name="" id="entrada">
+                </div>
 
-              <div class="date">
-                  <label for="salida">Fecha de salida:<br></label>
-                  <input v-mode="crearReserva.fechaSalida" type="date" name="" id="salida">
-              </div>
-          </div>
-          
-          <div class="info-reserva">
-              <label for="">Noches: <span>8</span></label>    
-            <label for="">Precio: <span>$10.000</span></label>
-          </div>
-          <button type="submit">RESERVAR</button>
-      </form>
-  </div>
+                <div class="date">
+                    <label for="salida">Fecha de salida:<br></label>
+                    <input v-model="crearReserva.fechaSalida" type="date" name="" id="salida">
+                </div>
+            </div>
+            <button type="submit">RESERVAR</button>
+        </form>
+    </div>
 </template>
 
 <script>
 import gql from 'graphql-tag'
 
 export default {
-    name: "Reserva",
+    name: "Form-reserva",
 
     data: function(){
         return {
@@ -66,7 +61,7 @@ export default {
                 .mutate({
                     mutation: gql `
                     mutation ($refresh: String!){
-                        refreshToekn(refresh: $refresh) {
+                        refreshToken(refresh: $refresh) {
                             access
                         }
                     }
@@ -105,9 +100,10 @@ export default {
                 })
                 .then((result) => {
                     alert("Reserva creada de forma correcta!");
+                        location.href = "/inicio"
                 })
                 .catch((error) =>{
-                    alert("Saldo insuficiente o habitación incorrecta");
+                    alert("fechas incorrectas o habitación incorrecta");
                 });
         }
     },

@@ -1,94 +1,157 @@
 <template>
-  <div class="reservas">
-      <h3>Reservas</h3>
+  <div class="Historial">
+    <div class="container-title">
+      <h2>
+        <span>Reservas de {{ username }}</span>
+      </h2>
+    </div>
 
-      <div class="tarjet-reservas">
-          <img src="../assets/Habitaciones/Habitacion-1.jpg" alt="">
-          <div class="tarjet-info-reserva">
-            <h5>Alcoba simple VIP</h5>
-            <p><span>Precio:</span> $220.000</p>
-            <p><span>Fecha de reserva:</span><br><br>13-07-2022  -  15-08-2022</p>
-          </div>
-          
-      </div>
+    <div class="container-table">
+        <table>
+            <tr>
+                <th>Habitacion</th>
+                <th>Ingreso</th>
+                <th>Salida</th>
+                <th>Fecha Creacion Reserva</th>
+                <th>Noches</th>
+                <th>Precio</th>
+            </tr>
 
-      <div class="tarjet-reservas">
-          <img src="../assets/Habitaciones/Habitacion-1.jpg" alt="">
-          <div class="tarjet-info-reserva">
-            <h5>Alcoba simple VIP</h5>
-            <p><span>Precio:</span> $100.000</p>
-            <p><span>Fecha de reserva:</span><br><br>13-07-2022  -  15-08-2022</p>
-          </div>
-          
-      </div>
-
-      <div class="tarjet-reservas">
-          <img src="../assets/Habitaciones/Habitacion-1.jpg" alt="">
-          <div class="tarjet-info-reserva">
-            <h5>Alcoba simple VIP</h5>
-            <p><span>Precio:</span> $180.000</p>
-            <p><span>Fecha de reserva:</span><br><br>13-07-2022  -  15-08-2022</p>
-          </div>
-          
-      </div>
+            <tr v-for="reserva in reservaByUsuario" :key="reserva.id">
+                <td>{{ reserva.nombreHabitacion }}</td>
+                <td>{{ reserva.fechaIngreso }}</td>
+                <td>{{ reserva.fechaSalida }}</td>
+                <td>{{ reserva.fechaCreacionReserva }}</td>
+                <td>{{ reserva.noches}}</td>
+                <td>${{ reserva.valorReserva }} COP</td>
+            </tr>
+        </table>
+    </div>
   </div>
+
 </template>
 
-<script>
-export default {
 
-}
+<script>
+import gql from "graphql-tag";
+
+export default {
+  name: "Reserva",
+
+  data: function () {
+    return {
+      username: localStorage.getItem("username") || "none",
+      reservaByUsuario: [],
+      };
+    },
+  apollo: {
+    reservaByUsuario: {
+      query: gql`
+      query ReservaByUsuario($username: String!) {
+        reservaByUsuario(username: $username) {
+          id
+          username
+          nombreHabitacion
+          fechaIngreso
+          fechaSalida
+          fechaCreacionReserva
+          noches
+          valorReserva
+        }
+      }
+      `,
+      variables() {
+        return{
+          username: this.username,
+        };
+      },
+    },
+  },
+  
+  methods: {
+    processReserva: async function() {
+
+      if (localStorage.getItem("token_access")  === null ||
+          localStorage.getItem("token_refresh") === null ) {
+        this.$emit("logOut");
+        return;
+    }
+
+    localStorage.setItem("token_access", "");
+
+    await this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation ($refresh: String!) {
+              refreshToken(refresh: $refresh) {
+                access
+              }
+            }
+          `,
+          variables: {
+            refresh: localStorage.getItem("token_refresh"),
+          },
+        })
+        .then((result) => {
+          localStorage.setItem("token_access", result.data.refreshToken.access);
+        })
+        .catch((error) => {
+          this.$emit("logOut");
+          return;
+        });
+    },
+  },
+
+  created: function (){
+    this.$apollo.queries.reservaByUsuario.refetch();
+  }
+};
 </script>
 
+
 <style>
-.reservas{
-    min-height: 85vh;
+.Historial {
+  width: 100%;
+  height: 80.1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-.reservas h3{
-    text-align: center;
+.Historial h2{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 35px;
+  margin-bottom: 20px;
+  color: #401201;
+}
+.Historial .container-table{
+    width: 80%;
+}
+.Historial table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.Historial table td,.Historial table th {
+  border: none;
+  padding: 8px;
 
-    font-size: 25px;
-    font-weight: 400;
-    color: #F1F1F1;
-    background: #260101;
-    padding: 5px 0;
-    margin: 10px 0;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
 }
-.tarjet-reservas{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 25px 0;
-    margin: 15px 0;
-
-    background: #260101;
-    color: #D9C58B;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+.Historial table tr:nth-child(even) {
+  background-color: #f1e7c7;
 }
-.tarjet-reservas img{
-    margin-left: 20px;
-    max-width: 400px;
+.Historial table tr:hover {
+  cursor: pointer;
+  background-color: rgba(217, 198, 139, 0.301)
 }
-.tarjet-info-reserva{
-    display: flex;
-    flex-wrap: wrap;
-    width: 65%;
-    margin-top: 20px;
-    margin-left: 30px;
-}
-.tarjet-info-reserva h5{
-    font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 25px;
-    font-weight: 400;
-    width: 100%;
-}
-.tarjet-info-reserva p{
-    width: 50%;
-
-    font-size: 20px;
-    font-weight: 300;
-}
-.tarjet-info-reserva span{
-    font-weight: 400;
+.Historial table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #000000;
+  color: #D9C58B;
 }
 </style>
